@@ -1,0 +1,65 @@
+<div class="page-header">
+  <div class="fw-bold">Add Todo</div>
+
+  <button routerLink="../"
+          class="btn btn-secondary btn-sm ms-auto"
+          title="Back to the list">
+    Back
+  </button>
+</div>
+
+<form [formGroup]="todoForm" (ngSubmit)="onSubmit()" #f="ngForm">
+
+  <div class="mb-3">
+    <app-form-field [showSubmitErrors]="f.submitted">
+      <label for="todoTitle" class="form-label">Todo title:</label>
+      <input id="todoTitle" class="form-control" appFormControl type="text" formControlName="title"/>
+    </app-form-field>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="mb-3">
+        <app-form-field [showSubmitErrors]="f.submitted">
+          <label for="dueDate" class="form-label">Todo due date:</label>
+          <input id="dueDate" class="form-control" appFormControl type="date" formControlName="date"/>
+        </app-form-field>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="mb-3">
+        <app-form-field [showSubmitErrors]="f.submitted">
+
+          <label class="form-label me-3">Todo priority:</label>
+
+          <div class="btn-group">
+            <input appFormControl formControlName="priority"
+                   type="radio" class="btn-check" name="priority" id="btnradio1"
+                   [value]="TodoPriority.LOW"
+                   [checked]="todoForm.get('priority')?.value === TodoPriority.LOW"
+                   autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnradio1">Low</label>
+
+            <input appFormControl formControlName="priority" type="radio" class="btn-check" name="priority"
+                   id="btnradio2"
+                   [value]="TodoPriority.NORMAL"
+                   [checked]="todoForm.get('priority')?.value === TodoPriority.NORMAL"
+                   autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnradio2">Normal</label>
+
+            <input appFormControl formControlName="priority" type="radio" class="btn-check" name="priority"
+                   id="btnradio3"
+                   [value]="TodoPriority.HIGH"
+                   [checked]="todoForm.get('priority')?.value === TodoPriority.HIGH"
+                   autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnradio3">High</label>
+          </div>
+        </app-form-field>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn btn-primary" type="submit">Submit</button>
+
+</form>

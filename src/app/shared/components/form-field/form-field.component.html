@@ -1,0 +1,7 @@
+<div class="form-field" [ngClass]="{ invalid: isErrorVisible }">
+  <ng-content></ng-content>
+</div>
+
+<ng-container *ngIf="isErrorVisible">
+  <span class="invalid-feedback" *ngFor="let key of errorKeys">{{ key }}</span>
+</ng-container>
